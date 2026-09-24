@@ -1,1 +1,122 @@
-hi
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>Resume Manager</title>
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500;600;700&display=swap" rel="stylesheet" />
+<link rel="stylesheet" href="style.css" />
+</head>
+<body>
+  <div class="shell">
+
+    <header class="topbar">
+      <div>
+        <h1>Resume Manager</h1>
+        <p class="sub">Edits here update the portfolio's <code>data.json</code> — export when you're done and commit it to repo1.</p>
+      </div>
+      <div class="actions">
+        <label class="btn" for="import-input">Import data.json</label>
+        <input type="file" id="import-input" accept="application/json" hidden />
+        <button type="button" class="btn" id="reset-btn">Reset</button>
+        <button type="button" class="btn btn-accent" id="export-btn">Export data.json</button>
+      </div>
+    </header>
+
+    <div class="workspace">
+
+      <form class="editor panel" id="editor" autocomplete="off">
+
+        <section class="field-section">
+          <h2>Profile</h2>
+          <label>Name<input type="text" name="name" /></label>
+          <label>Title<input type="text" name="title" /></label>
+          <label>Bio<textarea name="bio" rows="3"></textarea></label>
+        </section>
+
+        <section class="field-section">
+          <h2>Contact</h2>
+          <div class="two-col">
+            <label>Email<input type="text" name="contact.email" /></label>
+            <label>Phone<input type="text" name="contact.phone" /></label>
+          </div>
+          <div class="two-col">
+            <label>Location<input type="text" name="contact.location" /></label>
+            <label>GitHub URL<input type="text" name="contact.github" /></label>
+          </div>
+          <label>LinkedIn URL<input type="text" name="contact.linkedin" /></label>
+        </section>
+
+        <section class="field-section">
+          <h2>Skills</h2>
+          <label>Languages <span class="hint">(comma separated)</span><input type="text" name="skills.languages" /></label>
+          <div class="two-col">
+            <label>Frontend<input type="text" name="skills.frontend" /></label>
+            <label>Backend<input type="text" name="skills.backend" /></label>
+          </div>
+          <label>Practice<input type="text" name="skills.practice" /></label>
+        </section>
+
+        <section class="field-section">
+          <div class="section-head">
+            <h2>Experience</h2>
+            <button type="button" class="btn btn-small" id="add-exp-btn">+ Add role</button>
+          </div>
+          <div id="experience-list"></div>
+        </section>
+
+        <section class="field-section">
+          <h2>Education</h2>
+          <label>Degree<input type="text" name="education.degree" /></label>
+          <label>School<input type="text" name="education.school" /></label>
+        </section>
+
+        <section class="field-section">
+          <h2>Integrations</h2>
+          <div class="two-col">
+            <label>GitHub username<input type="text" name="integrations.githubUsername" /></label>
+            <label>LeetCode username<input type="text" name="integrations.leetcodeUsername" /></label>
+          </div>
+          <p class="hint">Drive the GitHub &amp; LeetCode progress cards on the portfolio's right sidebar.</p>
+        </section>
+
+      </form>
+
+      <aside class="preview-pane panel">
+        <div class="preview-chrome">
+          <span class="preview-dot"></span>
+          <span class="preview-dot"></span>
+          <span class="preview-dot"></span>
+          <span class="preview-label">Live preview · repo1</span>
+        </div>
+        <iframe id="preview" src="preview/index.html" title="Portfolio preview"></iframe>
+      </aside>
+
+    </div>
+  </div>
+
+  <template id="experience-row-template">
+    <div class="exp-row" data-exp-row>
+      <div class="exp-row-head">
+        <span class="exp-index"></span>
+        <label class="exp-current"><input type="checkbox" data-field="current" /> Current role</label>
+        <button type="button" class="btn btn-small btn-remove" data-remove>Remove</button>
+      </div>
+      <div class="two-col">
+        <label>Role<input type="text" data-field="role" /></label>
+        <label>Period<input type="text" data-field="period" placeholder="2022 to present" /></label>
+      </div>
+      <label>Company<input type="text" data-field="company" /></label>
+      <label>Bullets <span class="hint">(one per line)</span><textarea rows="3" data-field="bullets"></textarea></label>
+    </div>
+  </template>
+
+  <script src="script.js"></script>
+</body>
+</html>
+
+
+
+
